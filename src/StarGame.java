@@ -3,7 +3,6 @@ import java.util.LinkedList;
 import java.util.Stack;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 public class StarGame 
 {
@@ -486,6 +485,9 @@ public class StarGame
 	}
 	public static Position prev=new Position(0,0);
 	public static Position to=new Position(0,0);
+	/**
+	 * Instructs computer marbles how to move
+	 */
 	public static void botMove()
 	{
 		//update list

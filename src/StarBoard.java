@@ -1,6 +1,5 @@
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 
@@ -23,7 +22,6 @@ import java.net.URL;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-/*Makes the board*/
 public class StarBoard extends Component
 {
 	private static BufferedImage img;
@@ -419,7 +417,13 @@ public class StarBoard extends Component
 			g.drawImage(computer.highlight, calibrate(StarGame.to).getRow(), calibrate(StarGame.to).getColumn(),null);
 		}
 	}
-	public Position calibrate(Position x)//ppos, bpos uses this(top-right coordinate)
+	
+	/**
+	 * Calibrates position of marble pictures
+	 * @param x ppos, bpos location
+	 * @return position in allPossible array
+	 */
+	public Position calibrate(Position x)
 	{
 		if(x!=null)
 		{
@@ -428,7 +432,13 @@ public class StarBoard extends Component
 		}
 		return null;
 	}
-	public Position assignToArray(Position x)//gets Position from allPossible array
+	
+	/**
+	 * Gets closest position from allPossible array
+	 * @param x position to be assigned
+	 * @return position in allPossible that corresponds to Position x
+	 */
+	public Position assignToArray(Position x)
 	{
 		for(int i = 0; i < allPossible.length; i++)
 		{
@@ -440,7 +450,11 @@ public class StarBoard extends Component
 		}
 		return null;
 	}
-	public Position assignMiddle(Position x)//basically assignToArray but much smaller range
+	
+	/**
+	 * Basically assignToArray but smaller range
+	 */
+	public Position assignMiddle(Position x)
 	{
 		for(int i = 0; i < allPossible.length; i++)
 		{
@@ -452,6 +466,10 @@ public class StarBoard extends Component
 		}
 		return null;
 	}
+	
+	/**
+	 * @return index of @param x in @param array
+	 */
 	public int indexOf(Position x, Position[] array)
 	{
 		for(int i = 0; i < array.length; i++)
@@ -464,6 +482,10 @@ public class StarBoard extends Component
 		}
 		return -1;
 	}
+	
+	/**
+	 * @return index of @param x in @param array
+	 */
 	public int indexOf(Position x, ArrayList<Position> array)
 	{
 		for(int i = 0; i < array.size(); i++)
@@ -476,6 +498,12 @@ public class StarBoard extends Component
 		}
 		return -1;
 	}
+	
+	/**
+	 * Returns all the positions surrounding one particular location
+	 * @param x center position
+	 * @return arrayList containing all adjacent positions
+	 */
 	public ArrayList<Position> surroundPosition(Position x)//returns all the positions of surrounding marbles
 	{
 //		System.out.println("Position: "+x.getRow()+" "+x.getColumn());
@@ -516,6 +544,12 @@ public class StarBoard extends Component
 	{
 		return computer;
 	}
+	
+	/**
+	 * Checks if a position is within the range of some valid location
+	 * @param x position to be checked 
+	 * @return true is x is in bounds, false otherwise
+	 */
 	public boolean inBounds(Position x)
 	{
 		if(indexOf(x, allPossible)!=0)
@@ -523,6 +557,10 @@ public class StarBoard extends Component
 		else
 			return false;
 	}
+	
+	/**
+	 * @return the winning player, null if no winner
+	 */
 	public Player checkWin()//returns player that wins, else returns null
 	{
 //		return computer;
@@ -549,6 +587,10 @@ public class StarBoard extends Component
 		}
 		return null;
 	}
+	
+	/**
+	 * The really cool clicky sound at each move
+	 */
 	public static void sound()
 	{
 		try
@@ -563,6 +605,10 @@ public class StarBoard extends Component
 			JOptionPane.showMessageDialog(null, "Error");
 		}
 	}
+	
+	/**
+	 * Happy pikachu denoting victory
+	 */
 	public static void win()
 	{
 		try
@@ -576,6 +622,10 @@ public class StarBoard extends Component
 			JOptionPane.showMessageDialog(null, "Error");
 		}
 	}
+	
+	/**
+	 * Sad muck denoting loss
+	 */
 	public static void lose()
 	{
 		try
@@ -589,6 +639,10 @@ public class StarBoard extends Component
 			JOptionPane.showMessageDialog(null, "Error");
 		}
 	}
+	
+	/**
+	 * Initializes window
+	 */
 	public void display(JFrame fr)
 	{
 		fr.getContentPane().add(new StarBoard(myFr));

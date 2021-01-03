@@ -1,4 +1,4 @@
-//delete if not using alg
+//NOT USED
 public class DistPar 
 {
 	int parent;
